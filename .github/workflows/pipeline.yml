@@ -1,4 +1,4 @@
-name: OpenWrt Firmware For r4s
+name: OpenWrt Firmware For r5s
 
 on:
   push:
