@@ -1,0 +1,22 @@
+From 5135bcf56907856cf0ee2ff40a1357d2966c2255 Mon Sep 17 00:00:00 2001
+From: GitHub Action <action@github.com>
+Date: Sat, 11 Mar 2023 19:19:49 +0800
+Subject: [PATCH 3/3] add openwrt to host file
+
+---
+ package/base-files/files/etc/hosts | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/package/base-files/files/etc/hosts b/package/base-files/files/etc/hosts
+index b7713ebcc..ceddc8c4c 100644
+--- a/package/base-files/files/etc/hosts
++++ b/package/base-files/files/etc/hosts
+@@ -1,4 +1,5 @@
+ 127.0.0.1 localhost
++172.16.0.1 openwrt
+ 
+ ::1     localhost ip6-localhost ip6-loopback
+ ff02::1 ip6-allnodes
+-- 
+2.34.1
+

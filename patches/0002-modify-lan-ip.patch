@@ -1,0 +1,31 @@
+From a29c46e720ac4bc2c067e8fa93d42d38ce200ef1 Mon Sep 17 00:00:00 2001
+From: GitHub Action <action@github.com>
+Date: Sat, 11 Mar 2023 19:19:12 +0800
+Subject: [PATCH 2/3] modify lan ip
+
+---
+ package/base-files/files/bin/config_generate | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
+
+diff --git a/package/base-files/files/bin/config_generate b/package/base-files/files/bin/config_generate
+index f95646bc9..785629fe6 100755
+--- a/package/base-files/files/bin/config_generate
++++ b/package/base-files/files/bin/config_generate
+@@ -147,11 +147,11 @@ generate_network() {
+ 		static)
+ 			local ipad
+ 			case "$1" in
+-				lan) ipad=${ipaddr:-"192.168.1.1"} ;;
+-				*) ipad=${ipaddr:-"192.168.$((addr_offset++)).1"} ;;
++				lan) ipad=${ipaddr:-"172.16.0.1"} ;;
++				*) ipad=${ipaddr:-"172.16.$((addr_offset++)).1"} ;;
+ 			esac
+ 
+-			netm=${netmask:-"255.255.255.0"}
++			netm=${netmask:-"255.255.0.0"}
+ 
+ 			uci -q batch <<-EOF
+ 				set network.$1.proto='static'
+-- 
+2.34.1
+
