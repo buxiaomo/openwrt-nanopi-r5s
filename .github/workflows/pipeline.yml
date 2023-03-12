@@ -47,29 +47,20 @@ jobs:
         id: create_release
         uses: actions/create-release@v1
         env:
-          GITHUB_TOKEN: ${{ secrets.TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           tag_name: ${{ steps.artifact.outputs.release_tag }}
           release_name: Auto Release ${{ steps.artifact.outputs.release_tag }}
           draft: false
           prerelease: false
 
-      - name: Upload Release Asset(openwrt-r4s-squashfs-img)
+      - name: Upload Release Asset(openwrt-r5s-squashfs-img)
         uses: actions/upload-release-asset@v1
         env:
-          GITHUB_TOKEN: ${{ secrets.TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: ./openwrt-r4s-squashfs-img.zip
-          asset_name: openwrt-r4s-squashfs-img.zip
+          asset_path: ./openwrt-r5s-squashfs-img.zip
+          asset_name: openwrt-r5s-squashfs-img.zip
           asset_content_type: application/zip
 
-      - name: Upload Release Asset(openwrt-r4s-ext4-img)
-        uses: actions/upload-release-asset@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.TOKEN }}
-        with:
-          upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: ./openwrt-r4s-ext4-img.zip
-          asset_name: openwrt-r4s-ext4-img.zip
-          asset_content_type: application/zip
