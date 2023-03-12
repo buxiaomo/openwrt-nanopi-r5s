@@ -33,7 +33,6 @@ function init() {
 	sudo apt-get -y install subversion build-essential libncurses5-dev zlib1g-dev gawk git ccache gettext libssl-dev xsltproc zip
 	wget -O- https://raw.githubusercontent.com/friendlyarm/build-env-on-ubuntu-bionic/master/install.sh | bash
 	sudo apt-get autoremove --purge -y
-	sudo apt-get clean
 	sudo timedatectl set-timezone Asia/Shanghai
 	git config --global user.name "GitHub Action"
 	git config --global user.email "action@github.com"
@@ -66,7 +65,7 @@ function build() {
 
 function artifact() {
 	ls -a
-	mkdir -p ./openwrt-squashfs-img
+	mkdir -p ./openwrt-r5s-squashfs-img
 	cp ./openwrt/bin/targets/rockchip/armv8/openwrt-rockchip-armv8-friendlyarm_nanopi-r5s-squashfs-sysupgrade.img.gz ./openwrt-r5s-squashfs-img
 	cp ./openwrt/bin/targets/rockchip/armv8/config.buildinfo ./openwrt-r5s-squashfs-img
 	zip -r openwrt-r5s-squashfs-img.zip ./openwrt-r5s-squashfs-img
