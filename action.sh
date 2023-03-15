@@ -59,9 +59,6 @@ function build() {
 	[ -d ./package/luci-app-chinadns-ng ] && rm -rf ./package/luci-app-chinadns-ng
 	git clone -b luci https://github.com/NagaseKouichi/openwrt-chinadns-ng.git ./package/luci-app-chinadns-ng
 
-	git clone -b v4.45.2-1 https://github.com/kuoruan/openwrt-v2ray.git ./package/v2ray-core
-	git clone -b master --depth 1 https://github.com/kuoruan/openwrt-upx.git ./package/upx
-
 	./scripts/feeds update -a
 	./scripts/feeds install -a
 	[ -d ../patches ] && git am -3 ../patches/*.patch
