@@ -59,6 +59,8 @@ function build() {
 	[ -d ./package/luci-app-chinadns-ng ] && rm -rf ./package/luci-app-chinadns-ng
 	git clone -b luci https://github.com/NagaseKouichi/openwrt-chinadns-ng.git ./package/luci-app-chinadns-ng
 
+	git clone --depth=1 https://github.com/vernesong/OpenClash.git ./package/luci-app-openclash
+
 	./scripts/feeds update -a
 	./scripts/feeds install -a
 	[ -d ../patches ] && git am -3 ../patches/*.patch
