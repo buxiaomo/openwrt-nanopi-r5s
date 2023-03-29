@@ -61,8 +61,6 @@ function build() {
 
 	git clone --depth=1 https://github.com/vernesong/OpenClash.git ./package/luci-app-openclash
 
-	git clone https://github.com/destan19/OpenAppFilter.git ./package/OpenAppFilter
-
 	./scripts/feeds update -a
 	./scripts/feeds install -a
 	[ -d ../patches ] && git am -3 ../patches/*.patch
