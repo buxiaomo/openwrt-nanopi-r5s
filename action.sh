@@ -29,9 +29,14 @@ function init() {
 		sudo apt-get clean all
 	)
 	sudo apt-get update
-	sudo apt-get install make gcc g++ libncurses5-dev unzip -y
-	sudo apt-get -y install subversion build-essential libncurses5-dev zlib1g-dev gawk git ccache gettext libssl-dev xsltproc zip
-	wget -O- https://raw.githubusercontent.com/friendlyarm/build-env-on-ubuntu-bionic/master/install.sh | bash
+	sudo apt-get full-upgrade -y
+	sudo apt-get -y install ack antlr3 asciidoc autoconf automake autopoint binutils bison build-essential \
+		 bzip2 ccache cmake cpio curl device-tree-compiler fastjar flex gawk gettext gcc-multilib g++-multilib \
+		 git gperf haveged help2man intltool libc6-dev-i386 libelf-dev libglib2.0-dev libgmp3-dev libltdl-dev \
+		 libmpc-dev libmpfr-dev libncurses5-dev libncursesw5-dev libreadline-dev libssl-dev libtool lrzsz \
+		 mkisofs msmtp nano ninja-build p7zip p7zip-full patch pkgconf python2.7 python3 python3-pyelftools \
+		 libpython3-dev qemu-utils rsync scons squashfs-tools subversion swig texinfo uglifyjs upx-ucl unzip \
+		 vim wget xmlto xxd zlib1g-dev
 	sudo apt-get autoremove --purge -y
 	sudo timedatectl set-timezone Asia/Shanghai
 	git config --global user.name "GitHub Action"
@@ -48,7 +53,7 @@ function build() {
 		git pull
 		popd
 	else
-		git clone https://github.com/coolsnowwolf/lede ./openwrt
+		git clone -b 20220401 https://github.com/coolsnowwolf/lede ./openwrt
 	fi
 	pushd openwrt
 
