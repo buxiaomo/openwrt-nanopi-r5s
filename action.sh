@@ -37,7 +37,6 @@ function init() {
 		 mkisofs msmtp nano ninja-build p7zip p7zip-full patch pkgconf python2.7 python3 python3-pyelftools \
 		 libpython3-dev qemu-utils rsync scons squashfs-tools subversion swig texinfo uglifyjs upx-ucl unzip \
 		 vim wget xmlto xxd zlib1g-dev
-	sudo apt-get autoremove --purge -y
 	sudo timedatectl set-timezone Asia/Shanghai
 	git config --global user.name "GitHub Action"
 	git config --global user.email "action@github.com"
@@ -53,7 +52,7 @@ function build() {
 		git pull
 		popd
 	else
-		git clone -b 20220401 https://github.com/coolsnowwolf/lede ./openwrt
+		git clone https://github.com/coolsnowwolf/lede ./openwrt
 	fi
 	pushd openwrt
 
