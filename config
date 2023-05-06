@@ -21,6 +21,7 @@ CONFIG_PACKAGE_openvpn-easy-rsa=y
 CONFIG_PACKAGE_openssl-util=y
 CONFIG_PACKAGE_luci-app-xlnetacc=y
 
+
 CONFIG_PACKAGE_iperf3=y
 CONFIG_PACKAGE_hdparm=y
 CONFIG_PACKAGE_tcpdump=y
@@ -31,11 +32,12 @@ CONFIG_PACKAGE_vim-full=y
 CONFIG_PACKAGE_tailscale=y
 CONFIG_PACKAGE_losetup=y
 CONFIG_PACKAGE_resize2fs=y
-CONFIG_PACKAGE_coreutils-truncate=y
 CONFIG_PACKAGE_curl=y
 CONFIG_PACKAGE_wget-ssl=y
 CONFIG_PACKAGE_lsblk=y
 CONFIG_PACKAGE_usbutils=y
 CONFIG_PACKAGE_jq=y
+CONFIG_PACKAGE_coreutils-truncate=y
+CONFIG_PACKAGE_openvpn-mbedtls=y
 
 CONFIG_PACKAGE_kmod-usb-hid=y
