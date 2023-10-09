@@ -29,7 +29,7 @@ function init() {
 		sudo apt-get clean all
 	)
 	sudo apt-get update
-	sudo apt-get dist-upgrade -y
+	# sudo apt-get dist-upgrade -y
 	sudo apt-get -y install ack antlr3 asciidoc autoconf automake autopoint binutils bison build-essential \
 		 bzip2 ccache cmake cpio curl device-tree-compiler fastjar flex gawk gettext gcc-multilib g++-multilib \
 		 git gperf haveged help2man intltool libc6-dev-i386 libelf-dev libglib2.0-dev libgmp3-dev libltdl-dev \
