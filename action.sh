@@ -57,7 +57,6 @@ function build() {
 	pushd openwrt
 
 	git clone --depth=1 https://github.com/vernesong/OpenClash.git ./package/luci-app-openclash
-	git clone https://github.com/sensec/luci-app-xlnetacc.git ./package/luci-app-xlnetacc
 
 	./scripts/feeds update -a
 	./scripts/feeds install -a
