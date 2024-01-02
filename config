@@ -17,6 +17,8 @@ CONFIG_PACKAGE_luci-app-dockerman=y
 CONFIG_PACKAGE_luci-app-openclash=y
 CONFIG_PACKAGE_luci-app-vlmcsd=y
 
+# CONFIG_PACKAGE_dnsmasq is not set
+
 CONFIG_PACKAGE_openvpn-easy-rsa=y
 CONFIG_PACKAGE_openssl-util=y
 CONFIG_PACKAGE_luci-app-xlnetacc=y
