@@ -71,10 +71,10 @@ function build() {
 }
 
 function artifact() {
-	ls -a
 	mkdir -p ./openwrt-r5s-squashfs-img
-	cp ./openwrt/bin/targets/rockchip/armv8/openwrt-rockchip-armv8-friendlyarm_nanopi-r5s-squashfs-sysupgrade.img.gz ./openwrt-r5s-squashfs-img
-	cp ./openwrt/bin/targets/rockchip/armv8/config.buildinfo ./openwrt-r5s-squashfs-img
+	ls -hl ./openwrt/bin/targets/rockchip/armv8/
+	cp ./openwrt/bin/targets/rockchip/armv8/*-squashfs-sysupgrade.img.gz ./openwrt-r5s-squashfs-img/
+	cp ./openwrt/bin/targets/rockchip/armv8/config.buildinfo ./openwrt-r5s-squashfs-img/
 	zip -r openwrt-r5s-squashfs-img.zip ./openwrt-r5s-squashfs-img
 }
 
