@@ -52,7 +52,7 @@ function build() {
 		git pull
 		popd
 	else
-		git clone https://github.com/openwrt/openwrt.git ./openwrt
+		git clone https://github.com/coolsnowwolf/lede.git ./openwrt
 		[ -f ./feeds.conf.default ] && cat ./feeds.conf.default >> ./openwrt/feeds.conf.default
 	fi
 	pushd openwrt
