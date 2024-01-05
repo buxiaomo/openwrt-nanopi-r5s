@@ -62,7 +62,12 @@ function build() {
 
 	./scripts/feeds update -a
 	./scripts/feeds install -a
-	[ -d ../patches ] && git am -3 ../patches/*.patch
+	if [ -d ../patches ];then
+		git apply --check ../patches/*.patch
+		if [ $? -eq 0 ];then
+			git am ../patches/*.patch
+		fi
+	fi
 	[ -d ../files ] && cp -fr ../files ./files
 	[ -f ../config ] && cp -fr ../config ./.config
 	make defconfig

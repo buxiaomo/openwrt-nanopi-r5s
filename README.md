@@ -16,6 +16,7 @@ docker network create \
 -o parent=br-lan \
 vnet
 
+git format-patch main
 
 docker run -d --name=wxedge --restart=always --privileged --network my-macvlan-net --tmpfs /run --tmpfs /tmp -v /data/wxy:/storage:rw onething1/wxedge:3.0.2
 
