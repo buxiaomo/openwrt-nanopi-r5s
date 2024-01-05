@@ -1,6 +1,6 @@
-From 5135bcf56907856cf0ee2ff40a1357d2966c2255 Mon Sep 17 00:00:00 2001
+From f51d6ba04b273486e970e3e4c86a0a97c91b38bd Mon Sep 17 00:00:00 2001
 From: GitHub Action <action@github.com>
-Date: Sat, 11 Mar 2023 19:19:49 +0800
+Date: Fri, 5 Jan 2024 11:35:38 +0800
 Subject: [PATCH 3/3] add openwrt to host file
 
 ---
@@ -8,7 +8,7 @@ Subject: [PATCH 3/3] add openwrt to host file
  1 file changed, 1 insertion(+)
 
 diff --git a/package/base-files/files/etc/hosts b/package/base-files/files/etc/hosts
-index b7713ebcc..ceddc8c4c 100644
+index b7713ebcc6..ceddc8c4c5 100644
 --- a/package/base-files/files/etc/hosts
 +++ b/package/base-files/files/etc/hosts
 @@ -1,4 +1,5 @@
