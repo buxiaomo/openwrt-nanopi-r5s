@@ -45,7 +45,7 @@ function init() {
 function build() {
 	release_tag="$(date +%Y-%m-%d)"
 	[ -d ./files/etc/config ] || mkdir -p ./files/etc/config
-    echo ${release_tag} > ./files/etc/config/version
+    	echo ${release_tag} > ./files/etc/config/version
 
 	if [ -d openwrt ]; then
 		pushd openwrt
