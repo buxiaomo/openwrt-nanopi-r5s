@@ -1,4 +1,4 @@
 # OSX files
 **/.DS_Store
 !.gitignore
-./files/etc/config/version
+files/etc/config/version
