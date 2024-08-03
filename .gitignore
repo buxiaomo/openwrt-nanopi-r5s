@@ -1,3 +1,5 @@
 # OSX files
 **/.DS_Store
 !.gitignore
+files/etc/config/version
+openwrt
