@@ -72,10 +72,12 @@ function build() {
 	[ -f ../config ] && cp -fr ../config ./.config
 	make defconfig
 	make download -j$(nproc)
+	df -h
 	make -j$(nproc)
 	if [ $? -ne 0 ]; then
 		make -j1 V=s
 	fi
+	df -h
 	popd
 }
 
