@@ -1,5 +1,5 @@
 #!/bin/bash
-set -ex
+set -x
 function cleanup() {
 	if [ -f /swapfile ]; then
 		sudo swapoff /swapfile
@@ -31,12 +31,12 @@ function init() {
 	sudo apt-get update
 	# sudo apt-get dist-upgrade -y
 	sudo apt-get -y install ack antlr3 asciidoc autoconf automake autopoint binutils bison build-essential \
-		 bzip2 ccache cmake cpio curl device-tree-compiler fastjar flex gawk gettext gcc-multilib g++-multilib \
-		 git gperf haveged help2man intltool libc6-dev-i386 libelf-dev libglib2.0-dev libgmp3-dev libltdl-dev \
-		 libmpc-dev libmpfr-dev libncurses5-dev libncursesw5-dev libreadline-dev libssl-dev libtool lrzsz \
-		 mkisofs msmtp nano ninja-build p7zip p7zip-full patch pkgconf python2.7 python3 python3-pyelftools \
-		 libpython3-dev qemu-utils rsync scons squashfs-tools subversion swig texinfo uglifyjs upx-ucl unzip \
-		 vim wget xmlto xxd zlib1g-dev
+		bzip2 ccache cmake cpio curl device-tree-compiler fastjar flex gawk gettext gcc-multilib g++-multilib \
+		git gperf haveged help2man intltool libc6-dev-i386 libelf-dev libglib2.0-dev libgmp3-dev libltdl-dev \
+		libmpc-dev libmpfr-dev libncurses5-dev libncursesw5-dev libreadline-dev libssl-dev libtool lrzsz \
+		mkisofs msmtp nano ninja-build p7zip p7zip-full patch pkgconf python2.7 python3 python3-pyelftools \
+		libpython3-dev qemu-utils rsync scons squashfs-tools subversion swig texinfo uglifyjs upx-ucl unzip \
+		vim wget xmlto xxd zlib1g-dev
 	sudo timedatectl set-timezone Asia/Shanghai
 	git config --global user.name "GitHub Action"
 	git config --global user.email "action@github.com"
@@ -45,7 +45,7 @@ function init() {
 function build() {
 	release_tag="$(date +%Y-%m-%d)"
 	[ -d ./files/etc/config ] || mkdir -p ./files/etc/config
-    	echo ${release_tag} > ./files/etc/config/version
+	echo ${release_tag} >./files/etc/config/version
 
 	if [ -d openwrt ]; then
 		pushd openwrt
@@ -54,7 +54,7 @@ function build() {
 	else
 		git clone https://github.com/openwrt/openwrt.git ./openwrt
 		# git clone https://github.com/coolsnowwolf/lede.git ./openwrt
-		[ -f ./feeds.conf.default ] && cat ./feeds.conf.default >> ./openwrt/feeds.conf.default
+		[ -f ./feeds.conf.default ] && cat ./feeds.conf.default >>./openwrt/feeds.conf.default
 	fi
 	pushd openwrt
 
@@ -62,9 +62,9 @@ function build() {
 
 	./scripts/feeds update -a
 	./scripts/feeds install -a
-	if [ -d ../patches ];then
+	if [ -d ../patches ]; then
 		git apply --check ../patches/*.patch
-		if [ $? -eq 0 ];then
+		if [ $? -eq 0 ]; then
 			git am ../patches/*.patch
 		fi
 	fi
@@ -73,8 +73,8 @@ function build() {
 	make defconfig
 	make download -j$(nproc)
 	make -j$(nproc)
-	if [ $? -ne 0 ];then
-		make -j$(nproc) V=s
+	if [ $? -ne 0 ]; then
+		make -j1 V=s
 	fi
 	popd
 }
