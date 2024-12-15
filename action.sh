@@ -5,7 +5,16 @@ function cleanup() {
 		sudo swapoff /swapfile
 		sudo rm -rf /swapfile
 	fi
-	sudo rm -rf /etc/apt/sources.list.d/* /usr/share/dotnet /usr/local/lib/android /opt/ghc
+	df -h
+	sudo rm -rf /etc/apt/sources.list.d/* \
+	/usr/share/dotnet \
+	/usr/local/lib/android \
+	/opt/hostedtoolcache/CodeQL \
+	/usr/local/.ghcup \
+	/usr/share/swift \
+	/usr/local/lib/node_modules \
+	/usr/local/share/powershell \
+	/opt/ghc /usr/local/lib/heroku
 	command -v docker && docker rmi $(docker images -q)
 	sudo apt-get -y purge \
 		azure-cli* \
@@ -20,6 +29,7 @@ function cleanup() {
 		mysql* \
 		php*
 	sudo apt autoremove --purge -y
+	df -h
 }
 
 function init() {
@@ -83,7 +93,7 @@ function build() {
 
 function artifact() {
 	mkdir -p ./openwrt-r5s-squashfs-img
-	ls -hl ./openwrt/bin/targets/rockchip/armv8/
+	ls -hl ./openwrt/bin/targets/rockchip/armv8
 	cp ./openwrt/bin/targets/rockchip/armv8/*-squashfs-sysupgrade.img.gz ./openwrt-r5s-squashfs-img/
 	cp ./openwrt/bin/targets/rockchip/armv8/config.buildinfo ./openwrt-r5s-squashfs-img/
 	zip -r openwrt-r5s-squashfs-img.zip ./openwrt-r5s-squashfs-img
