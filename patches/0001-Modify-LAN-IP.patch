@@ -1,14 +1,14 @@
-From 9d16de7fde9d1671b782dd6f0379374db7e74fa1 Mon Sep 17 00:00:00 2001
-From: buxiaomo <95112082@qq.com>
-Date: Sat, 3 Aug 2024 20:34:31 +0800
-Subject: [PATCH] Modify LAN IP
+From 2160dad3bb0e61698ff933cba95147560c04fc4f Mon Sep 17 00:00:00 2001
+From: GitHub Action <action@github.com>
+Date: Fri, 11 Apr 2025 22:44:20 +0800
+Subject: [PATCH] 0001-Modify-LAN-IP
 
 ---
  package/base-files/files/bin/config_generate | 6 +++---
  1 file changed, 3 insertions(+), 3 deletions(-)
 
 diff --git a/package/base-files/files/bin/config_generate b/package/base-files/files/bin/config_generate
-index a9ca4d5b2..4815e2a5f 100755
+index 52fd105fa..57a378608 100755
 --- a/package/base-files/files/bin/config_generate
 +++ b/package/base-files/files/bin/config_generate
 @@ -147,11 +147,11 @@ generate_network() {
@@ -20,12 +20,11 @@ index a9ca4d5b2..4815e2a5f 100755
 +				lan) ipad=${ipaddr:-"172.16.0.1"} ;;
 +				*) ipad=${ipaddr:-"172.16.$((addr_offset++)).1"} ;;
  			esac
- 
+
 -			netm=${netmask:-"255.255.255.0"}
 +			netm=${netmask:-"255.255.0.0"}
- 
+
  			uci -q batch <<-EOF
  				set network.$1.proto='static'
--- 
+--
 2.34.1
-
