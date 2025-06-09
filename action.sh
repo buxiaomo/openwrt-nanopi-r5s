@@ -65,6 +65,7 @@ function build() {
 		git pull
 		popd
 	else
+		id
 		# git clone https://github.com/openwrt/openwrt.git ${HOME_DIR}/openwrt
 		git clone https://github.com/coolsnowwolf/lede.git ${HOME_DIR}/openwrt
 		[ -f ./feeds.conf.default ] && cat ./feeds.conf.default >> ${HOME_DIR}/openwrt/feeds.conf.default
@@ -75,7 +76,7 @@ function build() {
 
 	./scripts/feeds update -a
 	./scripts/feeds install -a
-	
+
 	echo ${GITHUB_WORKSPACE}
 
 	if [ -d ../patches ]; then
