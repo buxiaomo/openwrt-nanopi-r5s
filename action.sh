@@ -68,7 +68,7 @@ function build() {
 		id
 		# git clone https://github.com/openwrt/openwrt.git ${HOME_DIR}/openwrt
 		sudo git clone https://github.com/coolsnowwolf/lede.git ${HOME_DIR}/openwrt
-		chown -R $(id -u):$(id -g) ${HOME_DIR}/openwrt
+		sudo chown -R 1001:128 /mnt/openwrt ${HOME_DIR}/openwrt
 		[ -f ./feeds.conf.default ] && cat ./feeds.conf.default >> ${HOME_DIR}/openwrt/feeds.conf.default
 	fi
 	pushd ${HOME_DIR}/openwrt
