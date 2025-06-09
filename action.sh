@@ -2,6 +2,9 @@
 set -x
 
 export HOME_DIR="/mnt"
+export UID=$(id -u)
+export GID=$(id -g)
+export GITHUB_WORKSPACE=$(pwd)
 
 function cleanup() {
 	if [ -f /swapfile ]; then
@@ -68,7 +71,7 @@ function build() {
 		id
 		# git clone https://github.com/openwrt/openwrt.git ${HOME_DIR}/openwrt
 		sudo git clone https://github.com/coolsnowwolf/lede.git ${HOME_DIR}/openwrt
-		sudo chown -R 1001:128 /mnt/openwrt ${HOME_DIR}/openwrt
+		sudo chown -R ${UID}:${GID} ${HOME_DIR}/openwrt
 		[ -f ./feeds.conf.default ] && cat ./feeds.conf.default >> ${HOME_DIR}/openwrt/feeds.conf.default
 	fi
 	pushd ${HOME_DIR}/openwrt
@@ -78,17 +81,18 @@ function build() {
 	./scripts/feeds update -a
 	./scripts/feeds install -a
 
-	echo ${GITHUB_WORKSPACE}
+	echo 
 
-	if [ -d ../patches ]; then
+	if [ -d ${GITHUB_WORKSPACE}/patches ]; then
 
-		git apply --check ../patches/*.patch
+		git apply --check ${GITHUB_WORKSPACE}/patches/*.patch
 		if [ $? -eq 0 ]; then
-			git am ../patches/*.patch
+			git am ${GITHUB_WORKSPACE}/patches/*.patch
 		fi
 	fi
-	[ -d ../files ] && cp -fr ../files ./files
-	[ -f ../config ] && cp -fr ../config ./.config
+	[ -d ${GITHUB_WORKSPACE}/files ] && cp -fr ${GITHUB_WORKSPACE}/files ./files
+	[ -f ${GITHUB_WORKSPACE}/config ] && cp -fr ${GITHUB_WORKSPACE}/config ./.config
+	ls -l
 	make defconfig
 	make download -j$(nproc)
 	df -h
