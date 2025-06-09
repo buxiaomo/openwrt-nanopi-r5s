@@ -1,5 +1,8 @@
 #!/bin/bash
 set -x
+
+export HOME_DIR="/mnt"
+
 function cleanup() {
 	if [ -f /swapfile ]; then
 		sudo swapoff /swapfile
@@ -57,22 +60,26 @@ function build() {
 	[ -d ./files/etc/config ] || mkdir -p ./files/etc/config
 	echo ${release_tag} >./files/etc/config/version
 
-	if [ -d openwrt ]; then
+	if [ -d ${HOME_DIR}/openwrt ]; then
 		pushd openwrt
 		git pull
 		popd
 	else
-		# git clone https://github.com/openwrt/openwrt.git ./openwrt
-		git clone https://github.com/coolsnowwolf/lede.git ./openwrt
-		[ -f ./feeds.conf.default ] && cat ./feeds.conf.default >>./openwrt/feeds.conf.default
+		# git clone https://github.com/openwrt/openwrt.git ${HOME_DIR}/openwrt
+		git clone https://github.com/coolsnowwolf/lede.git ${HOME_DIR}/openwrt
+		[ -f ./feeds.conf.default ] && cat ./feeds.conf.default >> ${HOME_DIR}/openwrt/feeds.conf.default
 	fi
-	pushd openwrt
+	pushd ${HOME_DIR}/openwrt
 
 	[ -d ./package/luci-app-openclash ] || git clone --depth=1 https://github.com/vernesong/OpenClash.git ./package/luci-app-openclash
 
 	./scripts/feeds update -a
 	./scripts/feeds install -a
+	
+	echo ${GITHUB_WORKSPACE}
+
 	if [ -d ../patches ]; then
+
 		git apply --check ../patches/*.patch
 		if [ $? -eq 0 ]; then
 			git am ../patches/*.patch
