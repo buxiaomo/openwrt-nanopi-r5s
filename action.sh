@@ -111,7 +111,7 @@ function artifact() {
 	sudo ls -hl ${HOME_DIR}/openwrt/bin/targets/rockchip/armv8
 	sudo cp ${HOME_DIR}/openwrt/bin/targets/rockchip/armv8/*-squashfs-sysupgrade.img.gz ${HOME_DIR}/openwrt-r5s-squashfs/
 	sudo cp ${HOME_DIR}/openwrt/bin/targets/rockchip/armv8/config.buildinfo ${HOME_DIR}/openwrt-r5s-squashfs/
-	sudo zip -r openwrt-r5s-squashfs.zip ${HOME_DIR}/openwrt-r5s-squashfs
+	sudo zip -r ${HOME_DIR}/openwrt-r5s-squashfs.zip ${HOME_DIR}/openwrt-r5s-squashfs
 }
 
 function auto() {
