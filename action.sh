@@ -59,6 +59,7 @@ function init() {
 }
 
 function build() {
+	set -e
 	release_tag="$(date +%Y-%m-%d)"
 	[ -d ./files/etc/config ] || mkdir -p ./files/etc/config
 	echo ${release_tag} >./files/etc/config/version
@@ -105,11 +106,12 @@ function build() {
 }
 
 function artifact() {
-	mkdir -p ./openwrt-r5s-squashfs-img
-	ls -hl ./openwrt/bin/targets/rockchip/armv8
-	cp ./openwrt/bin/targets/rockchip/armv8/*-squashfs-sysupgrade.img.gz ./openwrt-r5s-squashfs-img/
-	cp ./openwrt/bin/targets/rockchip/armv8/config.buildinfo ./openwrt-r5s-squashfs-img/
-	zip -r openwrt-r5s-squashfs-img.zip ./openwrt-r5s-squashfs-img
+	set -e
+	mkdir -p ${HOME_DIR}/openwrt-r5s-squashfs
+	ls -hl ${HOME_DIR}/openwrt/bin/targets/rockchip/armv8
+	cp ${HOME_DIR}/openwrt/bin/targets/rockchip/armv8/*-squashfs-sysupgrade.img.gz ${HOME_DIR}/openwrt-r5s-squashfs/
+	cp ${HOME_DIR}/openwrt/bin/targets/rockchip/armv8/config.buildinfo ${HOME_DIR}/openwrt-r5s-squashfs/
+	zip -r openwrt-r5s-squashfs.zip ${HOME_DIR}/openwrt-r5s-squashfs
 }
 
 function auto() {
