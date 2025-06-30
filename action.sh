@@ -2,8 +2,8 @@
 set -x
 
 export HOME_DIR="/mnt"
-export UID=$(id -u)
-export GID=$(id -g)
+export runner_uid=$(id -u)
+export runner_gid=$(id -g)
 export GITHUB_WORKSPACE=$(pwd)
 
 function cleanup() {
@@ -21,7 +21,7 @@ function cleanup() {
 	/usr/local/lib/node_modules \
 	/usr/local/share/powershell \
 	/opt/ghc /usr/local/lib/heroku
-	command -v docker && docker rmi $(docker images -q)
+	sudo command -v docker && docker rmi $(docker images -q)
 	sudo apt-get -y purge \
 		azure-cli* \
 		ghc* \
@@ -72,7 +72,7 @@ function build() {
 		id
 		# git clone https://github.com/openwrt/openwrt.git ${HOME_DIR}/openwrt
 		sudo git clone https://github.com/coolsnowwolf/lede.git ${HOME_DIR}/openwrt
-		sudo chown -R ${UID}:${GID} ${HOME_DIR}/openwrt
+		sudo chown -R ${runner_uid}:${runner_gid} ${HOME_DIR}/openwrt
 		[ -f ./feeds.conf.default ] && cat ./feeds.conf.default >> ${HOME_DIR}/openwrt/feeds.conf.default
 	fi
 	pushd ${HOME_DIR}/openwrt
