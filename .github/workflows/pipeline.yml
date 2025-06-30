@@ -21,9 +21,9 @@ jobs:
       - name: Checkout
         uses: actions/checkout@master
 
-      # - name: Clean workspace
-      #   run: |
-      #     ./action.sh cleanup
+      - name: Clean workspace
+        run: |
+          ./action.sh cleanup
 
       - name: Init system
         run: |
