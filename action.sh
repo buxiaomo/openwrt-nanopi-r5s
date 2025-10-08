@@ -93,6 +93,7 @@ function build() {
 	fi
 	[ -d ${GITHUB_WORKSPACE}/files ] && cp -fr ${GITHUB_WORKSPACE}/files ./files
 	[ -f ${GITHUB_WORKSPACE}/config ] && cp -fr ${GITHUB_WORKSPACE}/config ./.config
+	sed -i "s/\(DISTRIB_DESCRIPTION='%D %V %C\)'/\1 $(date +%Y-%m-%d)'/" package/base-files/files/etc/openwrt_release
 	ls -l
 	make defconfig
 	make download -j$(nproc)
