@@ -75,19 +75,6 @@ function build() {
 	pushd ${HOME_DIR}/openwrt
 
 	[ -d ./package/luci-app-openclash ] || git clone --depth=1 https://github.com/vernesong/OpenClash.git ./package/luci-app-openclash
-	mkdir ./package/luci-app-openclash/luci-app-openclash/root/etc/openclash/core
-	CLASH_DEV_URL="https://raw.githubusercontent.com/vernesong/OpenClash/core/master/dev/clash-linux-${1}.tar.gz"
-	CLASH_TUN_URL=$(curl -fsSL https://api.github.com/repos/vernesong/OpenClash/contents/master/premium\?ref\=core | grep download_url | grep $1 | awk -F '"' '{print $4}' | grep -v "v3" )
-	CLASH_META_URL="https://raw.githubusercontent.com/vernesong/OpenClash/core/master/meta/clash-linux-${1}.tar.gz"
-	GEOIP_URL="https://github.com/Loyalsoldier/v2ray-rules-dat/releases/latest/download/geoip.dat"
-	GEOSITE_URL="https://github.com/Loyalsoldier/v2ray-rules-dat/releases/latest/download/geosite.dat"
-	wget -qO- $CLASH_DEV_URL | tar xOvz > ./package/luci-app-openclash/luci-app-openclash/root/etc/openclash/core/clash
-	wget -qO- $CLASH_TUN_URL | gunzip -c > ./package/luci-app-openclash/luci-app-openclash/root/etc/openclash/core/clash_tun
-	wget -qO- $CLASH_META_URL | tar xOvz > ./package/luci-app-openclash/luci-app-openclash/root/etc/openclash/core/clash_meta
-	wget -qO- $GEOIP_URL > ./package/luci-app-openclash/luci-app-openclash/root/etc/openclash/core/GeoIP.dat
-	wget -qO- $GEOSITE_URL > ./package/luci-app-openclash/luci-app-openclash/root/etc/openclash/core/GeoSite.dat
-	chmod +x ./package/luci-app-openclash/luci-app-openclash/root/etc/openclash/core/clash*
-	ls -l ./package/luci-app-openclash/luci-app-openclash/root/etc/openclash/core/
 
 	sed -i 's/Os/O2/g' include/target.mk
 
@@ -114,10 +101,7 @@ function build() {
 	make defconfig
 	make download -j$(nproc)
 	df -h
-	make -j$(nproc)
-	if [ $? -ne 0 ]; then
-		make -j1 V=s
-	fi
+	make -j$(nproc) || make -j1 || make -j1 V=s
 	df -h
 	popd
 }
