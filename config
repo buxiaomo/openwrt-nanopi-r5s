@@ -9,24 +9,16 @@ CONFIG_LUCI_LANG_en=y
 CONFIG_LUCI_LANG_zh_Hans=y
 
 
-CONFIG_PACKAGE_luci-proto-openconnect=y
-CONFIG_PACKAGE_luci-proto-openfortivpn=y
-
-CONFIG_PACKAGE_luci-app-tailscale=y
 CONFIG_PACKAGE_luci-app-ddns=y
 CONFIG_PACKAGE_luci-app-qos=y
-CONFIG_PACKAGE_luci-app-samba4=y
 CONFIG_PACKAGE_luci-app-sqm=y
 CONFIG_PACKAGE_luci-app-ttyd=y
 CONFIG_PACKAGE_luci-app-udpxy=y
 CONFIG_PACKAGE_luci-app-upnp=y
-CONFIG_PACKAGE_luci-app-wol=y
-CONFIG_PACKAGE_luci-app-dockerman=y
 CONFIG_PACKAGE_luci-app-openclash=y
 CONFIG_PACKAGE_luci-app-vlmcsd=y
 
 # CONFIG_PACKAGE_dnsmasq is not set
-CONFIG_PACKAGE_dockerd=y
 CONFIG_PACKAGE_igmpproxy=y
 CONFIG_PACKAGE_iperf3=y
 CONFIG_PACKAGE_hdparm=y
@@ -35,7 +27,6 @@ CONFIG_PACKAGE_unzip=y
 CONFIG_PACKAGE_iftop=y
 CONFIG_PACKAGE_ifstat=y
 CONFIG_PACKAGE_vim-full=y
-CONFIG_PACKAGE_tailscale=y
 CONFIG_PACKAGE_losetup=y
 CONFIG_PACKAGE_resize2fs=y
 CONFIG_PACKAGE_curl=y
@@ -48,11 +39,8 @@ CONFIG_PACKAGE_sysstat=y
 CONFIG_PACKAGE_pciutils=y
 CONFIG_PACKAGE_coreutils-truncate=y
 CONFIG_PACKAGE_psmisc=y
-CONFIG_PACKAGE_nfs-kernel-server=y
-CONFIG_PACKAGE_nfs-kernel-server-utils=y
 
 
 CONFIG_PACKAGE_kmod-usb3=y
 CONFIG_PACKAGE_kmod-usb2=y
 CONFIG_PACKAGE_kmod-tcp-bbr=y
-
