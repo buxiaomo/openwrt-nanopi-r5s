@@ -67,8 +67,8 @@ function build() {
 		popd
 	else
 		id
-		# git clone https://github.com/openwrt/openwrt.git ${HOME_DIR}/openwrt
-		sudo git clone https://github.com/coolsnowwolf/lede.git ${HOME_DIR}/openwrt
+		sudo git clone -b openwrt-25.12 https://github.com/openwrt/openwrt.git ${HOME_DIR}/openwrt
+		# sudo git clone https://github.com/coolsnowwolf/lede.git ${HOME_DIR}/openwrt
 		sudo chown -R ${runner_uid}:${runner_gid} ${HOME_DIR}/openwrt
 		[ -f ./feeds.conf.default ] && cat ./feeds.conf.default >> ${HOME_DIR}/openwrt/feeds.conf.default
 	fi
