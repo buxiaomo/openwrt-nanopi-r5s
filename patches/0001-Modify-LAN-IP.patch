@@ -1,30 +1,26 @@
-From 2160dad3bb0e61698ff933cba95147560c04fc4f Mon Sep 17 00:00:00 2001
+From bf96f198b20dda0ef475128018890c173c15d3aa Mon Sep 17 00:00:00 2001
 From: GitHub Action <action@github.com>
-Date: Fri, 11 Apr 2025 22:44:20 +0800
-Subject: [PATCH] 0001-Modify-LAN-IP
+Date: Tue, 8 Sep 2026 15:18:22 +0800
+Subject: [PATCH] modify lan ip
 
 ---
- package/base-files/files/bin/config_generate | 6 +++---
- 1 file changed, 3 insertions(+), 3 deletions(-)
+ package/base-files/files/bin/config_generate | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
 diff --git a/package/base-files/files/bin/config_generate b/package/base-files/files/bin/config_generate
-index 52fd105fa..57a378608 100755
+index 18fae054d4..99ecd234d3 100755
 --- a/package/base-files/files/bin/config_generate
 +++ b/package/base-files/files/bin/config_generate
-@@ -147,11 +147,11 @@ generate_network() {
+@@ -163,8 +163,8 @@ generate_network() {
  		static)
- 			local ipad
+ 			local ipad netm prefix
  			case "$1" in
 -				lan) ipad=${ipaddr:-"192.168.1.1"} ;;
 -				*) ipad=${ipaddr:-"192.168.$((addr_offset++)).1"} ;;
-+				lan) ipad=${ipaddr:-"172.16.0.1"} ;;
++				lan) ipad=${ipaddr:-"172.16.1.1"} ;;
 +				*) ipad=${ipaddr:-"172.16.$((addr_offset++)).1"} ;;
  			esac
 
--			netm=${netmask:-"255.255.255.0"}
-+			netm=${netmask:-"255.255.0.0"}
-
- 			uci -q batch <<-EOF
- 				set network.$1.proto='static'
+ 			netm=${netmask:-"255.255.255.0"}
 --
 2.34.1
